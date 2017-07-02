@@ -5,7 +5,7 @@ public class FlyNoWay implements FlyBehavior {
 
     @Override
     public void fly() {
-
+        System.out.println("I cry, I can not fly...");
     }
 
     public int getFlyingSpeed() {
