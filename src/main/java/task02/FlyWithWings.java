@@ -12,8 +12,9 @@ public class FlyWithWings implements FlyBehavior {
         System.out.println("I'm flying with my wings!");
     }
 
-    public void setFlyingSpeed() { // 20-50 km per sec
-        int randSpeed = (int) Math.round(Math.random() + 90.0) + 10;
+    public void setFlyingSpeed() { // 20-110 km per sec
+        int randSpeed = (int) Math.round(Math.random() * 90.0) + 10;
+        //System.out.println(randSpeed);
 
         if (randSpeed > 55) {
             randSpeed = randSpeed >> 1;
