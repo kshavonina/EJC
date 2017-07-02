@@ -6,4 +6,7 @@ public class Main {
     }
 
     // need to fly for win - 250 km
+    private static void playCasino() {
+
+    }
 }
