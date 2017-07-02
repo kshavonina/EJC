@@ -1,7 +1,7 @@
 package task02;
 
 public class FlyNoWay implements FlyBehavior {
-    private int flyingSpeed = 0;
+    private final static int flyingSpeed = 0;
 
     @Override
     public void fly() {
@@ -9,6 +9,6 @@ public class FlyNoWay implements FlyBehavior {
     }
 
     public int getFlyingSpeed() {
-        return this.flyingSpeed;
+        return flyingSpeed;
     }
 }
