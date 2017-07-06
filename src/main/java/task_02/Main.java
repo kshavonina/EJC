@@ -1,4 +1,4 @@
-package task02;
+package task_02;
 
 public class Main {
     private static int bank = 500;

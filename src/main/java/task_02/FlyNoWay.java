@@ -1,4 +1,4 @@
-package task02;
+package task_02;
 
 public class FlyNoWay implements FlyBehavior {
     private final static int flyingSpeed = 0;

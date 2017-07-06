@@ -1,4 +1,4 @@
-package task02;
+package task_02;
 
 public class WoodenDuck extends Duck {
     public WoodenDuck() {
