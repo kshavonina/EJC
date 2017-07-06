@@ -8,4 +8,8 @@ public class Main {
     // create generateMap for creating battle field
 
     // create playing process (method, I think void one)
+
+    // create methods createSingleDeckShip(), createThreeDeckShip() ... for creating ships on map
+    
+
 }
