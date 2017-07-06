@@ -2,16 +2,25 @@ package task_03;
 
 public class PlayingField {
     private int n;
-    private char[][] cells;
+    private char[][] field;
 
-    private final static char CLEAR_WATER = '0';
+    private final static char CLEAR_WATER = '.';
     private final static char WATER_NEAR_SHIP = '-';
     private final static char SHIP = 'S';
     private final static char DAMAGED_SHIP = 'X';
 
     public static void main(String[] args) {
-        //PlayingField f = new PlayingField();
-        //f.printPlayingField();
+        PlayingField f = new PlayingField();
+        f.printPlayingField();
+        System.out.println();
+
+        f.createShips();
+
+        f.printPlayingField();
+
+        /*for (int i = 0; i < 100; i++) {
+            System.out.println(Math.round(Math.random() * 9));
+        }*/
     }
 
     public PlayingField() {
@@ -20,11 +29,11 @@ public class PlayingField {
 
     public PlayingField(int n) {
         this.n = n;
-        cells = new char[n][n];
+        field = new char[n][n];
 
         for (int i = 0; i < this.n; i++) {
             for (int j = 0; j < this.n; j++) {
-                cells[i][j] = CLEAR_WATER;
+                field[i][j] = CLEAR_WATER;
             }
         }
     }
@@ -36,9 +45,171 @@ public class PlayingField {
     public void printPlayingField() {
         for (int i = 0; i < this.n; i++) {
             for (int j = 0; j < this.n; j++) {
-                System.out.print(cells[i][j] + " ");
+                System.out.print(field[i][j] + " ");
             }
             System.out.println();
+        }
+    }
+
+    public void createShips() {
+        // create four-decker
+        boolean isCreated = false;
+
+        while (!isCreated) {
+            isCreated = createShip((int) Math.round(Math.random() * 9), (int) Math.round(Math.random() * 9), 4);
+        }
+
+        isCreated = false;
+
+        for (int i = 0; i < 2; i++) {
+            while (!isCreated) {
+                isCreated = createShip((int) Math.round(Math.random() * 9), (int) Math.round(Math.random() * 9), 3);
+            }
+
+            isCreated = false;
+        }
+
+        for (int i = 0; i < 3; i++) {
+            while (!isCreated) {
+                isCreated = createShip((int) Math.round(Math.random() * 9), (int) Math.round(Math.random() * 9), 2);
+            }
+
+            isCreated = false;
+        }
+
+        for (int i = 0; i < 4; i++) {
+            while (!isCreated) {
+                isCreated = createShip((int) Math.round(Math.random() * 9), (int) Math.round(Math.random() * 9), 1);
+            }
+
+            isCreated = false;
+        }
+
+        for (int i = 0; i < this.n; i++) {
+            for (int j = 0; j < this.n; j++) {
+                if (this.field[i][j] == WATER_NEAR_SHIP) {
+                    updateCell(i, j, CLEAR_WATER);
+                }
+            }
+        }
+
+
+//        isCreated = createShip(5, 8, 4);
+//        isCreated = createShip(8, 7, 3);
+//        isCreated = createShip(2, 6, 3);
+    }
+
+    private boolean createShip(int letter, int digit, int deck) {
+        if (!isCellAvailable(letter, digit)) {
+            return false;
+        }
+
+        //int direction = (int) Math.round(Math.random() * 3);
+
+        if (digit + deck - 1 < this.n) {
+            boolean isDirectionAvailable = true;
+
+            for (int i = digit; i < digit + deck; i++) {
+                if (!isCellAvailable(letter, i)) {
+                    isDirectionAvailable = false;
+                    break;
+                }
+            }
+
+            if (isDirectionAvailable) {
+                for (int i = digit; i < digit + deck; i++) {
+                    updateCell(letter, i, SHIP);
+                    updateCellEnvironment(letter, i);
+                }
+
+                return true;
+            }
+        }
+
+        if (letter + deck - 1 < this.n) {
+            boolean isDirectionAvailable = true;
+
+            for (int i = letter; i < letter + deck; i++) {
+                if (!isCellAvailable(i, digit)) {
+                    isDirectionAvailable = false;
+                    break;
+                }
+            }
+
+            if (isDirectionAvailable) {
+                for (int i = letter; i < letter + deck; i++) {
+                    updateCell(i, digit, SHIP);
+                    updateCellEnvironment(i, digit);
+                }
+
+                return true;
+            }
+        }
+
+        if (digit - (deck - 1) >= 0) {
+            boolean isDirectionAvailable = true;
+
+            for (int i = digit; i > digit - deck; i--) {
+                if (!isCellAvailable(letter, i)) {
+                    isDirectionAvailable = false;
+                    break;
+                }
+            }
+
+            if (isDirectionAvailable) {
+                for (int i = digit; i > digit - deck; i--) {
+                    updateCell(letter, i, SHIP);
+                    updateCellEnvironment(letter, i);
+                }
+
+                return true;
+            }
+        }
+
+        if (letter - (deck - 1) >= 0) {
+            boolean isDirectionAvailable = true;
+
+            for (int i = letter; i > letter - deck; i--) {
+                if (!isCellAvailable(i, digit)) {
+                    isDirectionAvailable = false;
+                    break;
+                }
+            }
+
+            if (isDirectionAvailable) {
+                for (int i = letter; i > letter - deck; i--) {
+                    updateCell(i, digit, SHIP);
+                    updateCellEnvironment(i, digit);
+                }
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private boolean isCellAvailable(int letter, int digit) {
+        if (this.field[letter][digit] == SHIP || this.field[letter][digit] == WATER_NEAR_SHIP) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private void updateCell(int letter, int digit, char ch) {
+        this.field[letter][digit] = ch;
+    }
+
+    private void updateCellEnvironment(int letter, int digit) {
+        for (int i = letter - 1; i <= letter + 1; i++) {
+            for (int j = digit - 1; j <= digit + 1; j++) {
+                if (i >= 0 && i < this.field.length && j >= 0 && j < this.field.length) {
+                    if (this.field[i][j] != SHIP) {
+                        this.field[i][j] = WATER_NEAR_SHIP;
+                    }
+                }
+            }
         }
     }
 
