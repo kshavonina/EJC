@@ -4,10 +4,10 @@ public class PlayingField {
     private int n;
     private char[][] field;
 
-    private final static char CLEAR_WATER = '.';
-    private final static char WATER_NEAR_SHIP = '-';
-    private final static char SHIP = 'S';
-    private final static char DAMAGED_SHIP = 'X';
+    public final static char CLEAR_WATER = '.';
+    public final static char WATER_NEAR_SHIP = '-';
+    public final static char SHIP = 'S';
+    public final static char DAMAGED_SHIP = 'X';
 
     public static void main(String[] args) {
         PlayingField f = new PlayingField();
@@ -49,6 +49,8 @@ public class PlayingField {
             }
             System.out.println();
         }
+
+        System.out.println();
     }
 
     public void createShips() {
@@ -197,15 +199,15 @@ public class PlayingField {
         return true;
     }
 
-    private void updateCell(int letter, int digit, char ch) {
+    public void updateCell(int letter, int digit, char ch) {
         this.field[letter][digit] = ch;
     }
 
-    private void updateCellEnvironment(int letter, int digit) {
+    public void updateCellEnvironment(int letter, int digit) {
         for (int i = letter - 1; i <= letter + 1; i++) {
             for (int j = digit - 1; j <= digit + 1; j++) {
                 if (i >= 0 && i < this.field.length && j >= 0 && j < this.field.length) {
-                    if (this.field[i][j] != SHIP) {
+                    if (this.field[i][j] != SHIP && this.field[i][j] != DAMAGED_SHIP) {
                         this.field[i][j] = WATER_NEAR_SHIP;
                     }
                 }
@@ -213,4 +215,7 @@ public class PlayingField {
         }
     }
 
+    public char getCell(int letter, int digit) {
+        return this.field[letter][digit];
+    }
 }
