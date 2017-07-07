@@ -31,7 +31,7 @@ public class SeaBattle {
     }
 
     public void startBattle() { // A B C D E F G H I J
-        //shipsField.printPlayingField();
+        shipsField.printPlayingField(); // COMMENT THIS
         playerField.printPlayingField();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
