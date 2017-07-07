@@ -35,9 +35,9 @@ public class SeaBattle {
         playerField.printPlayingField();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        int damagedCellsCount = 0;
-        /*Set<Pair<Integer, Integer>> shipCells = new HashSet<>();
+        //int damagedCellsCount = 0;
         Set<Pair<Integer, Integer>> damagedCells = new HashSet<>();
+        /*Set<Pair<Integer, Integer>> damagedCells = new HashSet<>();
 
         for (int i = 0; i < shipsField.getN(); i++) {
             for (int j = 0; j < shipsField.getN(); j++) {
@@ -114,9 +114,10 @@ public class SeaBattle {
                 System.out.println();
                 playerField.printPlayingField();
 
-                damagedCellsCount++;
+                //damagedCellsCount++;
+                damagedCells.add(new Pair<>(letter, digit));
 
-                if (damagedCellsCount == 20) {
+                if (/*damagedCellsCount == 20*/ damagedCells.size() == 20) {
                     System.out.println("You won this battle!!!");
                     break;
                 }
