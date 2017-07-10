@@ -9,20 +9,6 @@ public class PlayingField {
     public final static char SHIP = 'S';
     public final static char DAMAGED_SHIP = 'X';
 
-    /*public static void main(String[] args) {
-        PlayingField f = new PlayingField();
-        f.printPlayingField();
-        System.out.println();
-
-        f.createShips();
-
-        f.printPlayingField();
-
-        *//*for (int i = 0; i < 100; i++) {
-            System.out.println(Math.round(Math.random() * 9));
-        }*//*
-    }*/
-
     public PlayingField() {
         this(10);
     }

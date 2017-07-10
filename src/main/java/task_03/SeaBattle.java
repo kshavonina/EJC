@@ -24,12 +24,6 @@ public class SeaBattle {
         this.playerField = new PlayingField();
     }
 
-    /*public static void main(String[] args) {
-        SeaBattle b = new SeaBattle();
-        b.playerField.printPlayingField();
-        b.shipsField.printPlayingField();
-    }*/
-
     public void startBattle() { // A B C D E F G H I J
         //shipsField.printPlayingField(); // COMMENT THIS
         playerField.printPlayingField();
