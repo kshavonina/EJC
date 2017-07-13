@@ -6,13 +6,13 @@ import java.io.InputStreamReader;
 
 public class Main {
     public static void main(String[] args) {
-        task04_1();
-
-        task04_2();
+        Main main = new Main();
+        System.out.println(main.changeWord());
+        System.out.println(main.isPalindrome());
     }
 
-    static String task04_1() {
-        String word = null;
+    private String changeWord() {
+        String word = "";
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             word = reader.readLine();
@@ -20,18 +20,18 @@ public class Main {
             e.printStackTrace();
         }
 
-        StringBuilder res = new StringBuilder();
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < word.length(); i++) {
             if (i % 2 == 1) {
-                res.append(word.charAt(i));
+                result.append(word.charAt(i));
             }
         }
 
-        return res.toString();
+        return result.toString();
     }
 
-    static boolean task04_2() {
-        String phrase = null;
+    private boolean isPalindrome() {
+        String phrase = "";
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             phrase = reader.readLine();
@@ -41,12 +41,7 @@ public class Main {
 
         phrase = phrase.replace(" ", "");
         String reversedPhrase = new StringBuilder(phrase).reverse().toString();
-        //StringBuilder sbPhrase = new StringBuilder(phrase);
 
-        if (phrase.equals(reversedPhrase)) {
-            return true;
-        }
-
-        return false;
+        return phrase.equals(reversedPhrase);
     }
 }
