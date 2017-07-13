@@ -25,37 +25,26 @@ public class SeaBattle {
     }
 
     public void startBattle() { // A B C D E F G H I J
-        //shipsField.printPlayingField(); // COMMENT THIS
         playerField.printPlayingField();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        //int damagedCellsCount = 0;
         Set<Pair<Integer, Integer>> damagedCells = new HashSet<>();
-        /*Set<Pair<Integer, Integer>> damagedCells = new HashSet<>();
-
-        for (int i = 0; i < shipsField.getN(); i++) {
-            for (int j = 0; j < shipsField.getN(); j++) {
-                if (shipsField.getCell(i, j) == PlayingField.SHIP) {
-                    shipCells.add(new Pair<>(i, j));
-                }
-            }
-        }*/
 
         for (int i = 0; i < this.attempts; i++) {
             System.out.println("Enter cell: ");
 
-            String str = null;
+            String userShot = "";
 
             try {
-                str = reader.readLine();
+                userShot = reader.readLine();
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
             int letter = -1;
-            int digit = Integer.parseInt(str.substring(1));
+            int digit = Integer.parseInt(userShot.substring(1));
 
-            switch (str.charAt(0)) {
+            switch (userShot.charAt(0)) {
                 case 'A':
                     letter = 0;
                     break;
@@ -108,10 +97,9 @@ public class SeaBattle {
                 System.out.println();
                 playerField.printPlayingField();
 
-                //damagedCellsCount++;
                 damagedCells.add(new Pair<>(letter, digit));
 
-                if (/*damagedCellsCount == 20*/ damagedCells.size() == 20) {
+                if (damagedCells.size() == 20) {
                     System.out.println("You won this battle!!!");
                     break;
                 }
@@ -131,7 +119,7 @@ public class SeaBattle {
         int i = letter;
         int j = digit;
 
-        while (i >= 0 && i < shipsField.getN() && j >= 0 && j < shipsField.getN() && shipsField.getCell(i, j) == PlayingField.SHIP) {
+        while (i >= 0 && i < shipsField.getFieldSize() && j >= 0 && j < shipsField.getFieldSize() && shipsField.getCell(i, j) == PlayingField.SHIP) {
             set.add(new Pair<>(i, j));
             i++;
         }
@@ -139,7 +127,7 @@ public class SeaBattle {
         i = letter;
         j = digit;
 
-        while (i >= 0 && i < shipsField.getN() && j >= 0 && j < shipsField.getN() && shipsField.getCell(i, j) == PlayingField.SHIP) {
+        while (i >= 0 && i < shipsField.getFieldSize() && j >= 0 && j < shipsField.getFieldSize() && shipsField.getCell(i, j) == PlayingField.SHIP) {
             set.add(new Pair<>(i, j));
             i--;
         }
@@ -147,7 +135,7 @@ public class SeaBattle {
         i = letter;
         j = digit;
 
-        while (i >= 0 && i < shipsField.getN() && j >= 0 && j < shipsField.getN() && shipsField.getCell(i, j) == PlayingField.SHIP) {
+        while (i >= 0 && i < shipsField.getFieldSize() && j >= 0 && j < shipsField.getFieldSize() && shipsField.getCell(i, j) == PlayingField.SHIP) {
             set.add(new Pair<>(i, j));
             j++;
         }
@@ -155,7 +143,7 @@ public class SeaBattle {
         i = letter;
         j = digit;
 
-        while (i >= 0 && i < shipsField.getN() && j >= 0 && j < shipsField.getN() && shipsField.getCell(i, j) == PlayingField.SHIP) {
+        while (i >= 0 && i < shipsField.getFieldSize() && j >= 0 && j < shipsField.getFieldSize() && shipsField.getCell(i, j) == PlayingField.SHIP) {
             set.add(new Pair<>(i, j));
             j--;
         }
