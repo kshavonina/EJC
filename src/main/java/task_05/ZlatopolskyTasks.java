@@ -71,7 +71,9 @@ public class ZlatopolskyTasks {
         Set<Character> charactersSet = new HashSet<>();
 
         for (int i = 0; i < text.length(); i++) {
-            charactersSet.add(text.charAt(i));
+            if (!Character.isDigit(text.charAt(i))) {
+                charactersSet.add(text.charAt(i));
+            }
         }
 
         return charactersSet.size();
