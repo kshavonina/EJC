@@ -1,4 +1,4 @@
-package java.task_07;
+package task_07;
 
 import org.junit.Assert;
 import org.junit.Test;
