@@ -1,7 +1,5 @@
 package task_08;
 
-import task_05.ZlatopolskyTasks;
-
 import java.util.ArrayList;
 import java.util.List;
 
