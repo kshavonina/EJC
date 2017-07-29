@@ -9,22 +9,23 @@ package task_03;
  */
 public class PlayingField {
     /**
-     * A constant holding the mark of clear water
+     * A constant holding the state of clear water
      * on the playing field.
      */
     public final static char CLEAR_WATER = '.';
     /**
-     * A constant holding the mark of water near ship
-     * on the playing field.
+     * A constant holding the state of water near ship
+     * on the playing field. These cells are not available
+     * for creating another ships.
      */
     public final static char WATER_NEAR_SHIP = '-';
     /**
-     * A constant holding the mark of ship
+     * A constant holding the state of ship
      * on the playing field.
      */
     public final static char SHIP = 'S';
     /**
-     * A constant holding the mark of damaged part of ship
+     * A constant holding the state of damaged part of ship
      * on the playing field.
      */
     public final static char DAMAGED_SHIP = 'X';
@@ -200,6 +201,20 @@ public class PlayingField {
         return false;
     }
 
+    /**
+     * Checks if required direction is available for creating ship with a certain number
+     * of decks from specific cell.
+     *
+     * @param letter defines a first coordinate of cell on the playing field.
+     * @param digit defines a second coordinate of cell on the playing field.
+     * @param decksNumber is number of ship decks.
+     * @param direction is a required direction:
+     *                  0 - right;
+     *                  1 - down;
+     *                  2 - left;
+     *                  3 - up.
+     * @return true if the direction is available, false - otherwise.
+     */
     private boolean isDirectionAvailable(int letter, int digit, int decksNumber, int direction) {
         switch (direction) {
             case 0:
@@ -254,6 +269,19 @@ public class PlayingField {
         return true;
     }
 
+    /**
+     * Creates a ship with a certain number of decks from specific cell in available
+     * direction.
+     *
+     * @param letter defines a first coordinate of cell on the playing field.
+     * @param digit defines a second coordinate of cell on the playing field.
+     * @param decksNumber is number of ship decks.
+     * @param direction is a required direction:
+     *                  0 - right;
+     *                  1 - down;
+     *                  2 - left;
+     *                  3 - up.
+     */
     private void createShipInAvailableDirection(int letter, int digit, int decksNumber, int direction) {
         switch (direction) {
             case 0:
@@ -287,30 +315,59 @@ public class PlayingField {
         }
     }
 
+    /**
+     * Checks if the cell is available for creating ships.
+     *
+     * @param letter defines a first coordinate of cell on the playing field.
+     * @param digit defines a second coordinate of cell on the playing field.
+     * @return true if the cell is available, false - otherwise.
+     */
     private boolean isCellAvailable(int letter, int digit) {
-        if (this.field[letter][digit] == SHIP || this.field[letter][digit] == WATER_NEAR_SHIP) {
+        if (this.field[letter][digit] == PlayingField.SHIP ||
+                this.field[letter][digit] == PlayingField.WATER_NEAR_SHIP) {
             return false;
         }
 
         return true;
     }
 
+    /**
+     * Updates cell state to required.
+     *
+     * @param letter defines a first coordinate of cell on the playing field.
+     * @param digit defines a second coordinate of cell on the playing field.
+     * @param ch is required state of the cell.
+     */
     public void updateCell(int letter, int digit, char ch) {
         this.field[letter][digit] = ch;
     }
 
+    /**
+     * Updates cell environment. Marks cells near ship as not available
+     * for creating another ships.
+     *
+     * @param letter defines a first coordinate of cell on the playing field.
+     * @param digit defines a second coordinate of cell on the playing field.
+     */
     public void updateCellEnvironment(int letter, int digit) {
         for (int i = letter - 1; i <= letter + 1; i++) {
             for (int j = digit - 1; j <= digit + 1; j++) {
                 if (i >= 0 && i < this.field.length && j >= 0 && j < this.field.length) {
-                    if (this.field[i][j] != SHIP && this.field[i][j] != DAMAGED_SHIP) {
-                        this.field[i][j] = WATER_NEAR_SHIP;
+                    if (this.field[i][j] != PlayingField.SHIP && this.field[i][j] != PlayingField.DAMAGED_SHIP) {
+                        this.field[i][j] = PlayingField.WATER_NEAR_SHIP;
                     }
                 }
             }
         }
     }
 
+    /**
+     * Returns the state of specific cell on playing field.
+     *
+     * @param letter defines a first coordinate of cell on the playing field.
+     * @param digit defines a second coordinate of cell on the playing field.
+     * @return state of the cell.
+     */
     public char getCell(int letter, int digit) {
         return this.field[letter][digit];
     }
