@@ -1,33 +1,35 @@
 package task_02;
 
 /**
- * This class represents a game of duck casino.
+ * The DuckCasino class represents a game of duck casino.
  *
  * @author Kseniya Shavonina
  * @version 1.0
  */
-public class Main {
+public class DuckCasino {
     /** Player's bank. */
-    private static int bank = 500;
+    private int bank = 500;
 
     public static void main(String[] args) {
+        DuckCasino newGame = new DuckCasino();
+
         for (int i = 0; i < 5; i++) {
-            playCasino();
-            if (bank < 100) {
+            newGame.playCasino();
+            if (newGame.bank < 100) {
                 System.out.println("Sorry, game over.");
                 break;
             }
         }
 
         System.out.println();
-        System.out.println("Your bank: " + bank);
+        System.out.println("Your bank: " + newGame.bank);
     }
 
     /**
      * The process of the game.
      */
-    private static void playCasino() {
-        bank -= 100;
+    private void playCasino() {
+        this.bank -= 100;
         double randValue = Math.random();
         Duck duck;
         if (randValue > 0.5) {
@@ -41,7 +43,7 @@ public class Main {
         if (duck.flyBehavior instanceof FlyWithWings) {
             FlyWithWings flyBehavior = (FlyWithWings) duck.flyBehavior;
             if (isBetWins(flyBehavior.getFlyingSpeed())) {
-                bank += 200;
+                this.bank += 200;
                 System.out.println("Speed of your duck: " + flyBehavior.getFlyingSpeed());
                 System.out.println("Distance: " + 10 * flyBehavior.getFlyingSpeed());
                 System.out.println("Congratulations! Your bet wins!");

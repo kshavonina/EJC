@@ -30,7 +30,7 @@ public class FlyWithWings implements FlyBehavior {
     /**
      * Sets a random flight speed in the range of 20 to 110 km/s.
      */
-    public void setFlyingSpeed() {
+    private void setFlyingSpeed() {
         int randSpeed = (int) Math.round(Math.random() * 90.0) + 10;
 
         if (randSpeed > 55) {

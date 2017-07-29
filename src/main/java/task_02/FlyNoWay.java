@@ -9,7 +9,7 @@ package task_02;
  */
 public class FlyNoWay implements FlyBehavior {
     /** Speed of flight */
-    private final static int flyingSpeed = 0;
+    private final int flyingSpeed = 0;
 
     /**
      * Prints "I cry, I can not fly..." to the console.
@@ -25,6 +25,6 @@ public class FlyNoWay implements FlyBehavior {
      * @return flight speed.
      */
     public int getFlyingSpeed() {
-        return flyingSpeed;
+        return this.flyingSpeed;
     }
 }

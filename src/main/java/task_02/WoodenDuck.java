@@ -13,6 +13,6 @@ public class WoodenDuck extends Duck {
      * wooden duck can not fly.
      */
     public WoodenDuck() {
-        flyBehavior = new FlyNoWay();
+        this.flyBehavior = new FlyNoWay();
     }
 }

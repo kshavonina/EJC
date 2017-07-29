@@ -9,13 +9,13 @@ package task_02;
  */
 public class Duck {
     /** Represents a type of fly behaviour. */
-    FlyBehavior flyBehavior;
+    protected FlyBehavior flyBehavior;
 
     /**
      * Performs a flight in accordance with
      * the type of duck's fly behaviour.
      */
     public void performFly() {
-        flyBehavior.fly();
+        this.flyBehavior.fly();
     }
 }

@@ -12,6 +12,6 @@ public class CommonDuck extends Duck {
      * with FlyWithWings fly behaviour.
      */
     public CommonDuck() {
-        flyBehavior = new FlyWithWings();
+        this.flyBehavior = new FlyWithWings();
     }
 }
