@@ -1,6 +1,13 @@
 package task_02;
 
+/**
+ * This class represents a game of duck casino.
+ *
+ * @author Kseniya Shavonina
+ * @version 1.0
+ */
 public class Main {
+    /** Player's bank. */
     private static int bank = 500;
 
     public static void main(String[] args) {
@@ -16,7 +23,9 @@ public class Main {
         System.out.println("Your bank: " + bank);
     }
 
-    // need to fly for win - 650 km
+    /**
+     * The process of the game.
+     */
     private static void playCasino() {
         bank -= 100;
         double randValue = Math.random();
@@ -51,7 +60,14 @@ public class Main {
         }
     }
 
+    /**
+     * This method checks whether the bet won or not.
+     * The duck must fly 650 km in 10 seconds to win.
+     *
+     * @param speed is duck's speed of flying.
+     * @return true if bet won, false if not.
+     */
     private static boolean isBetWins(int speed) {
-        return speed * 10 > 650 ? true : false;
+        return speed * 10 > 650;
     }
 }
