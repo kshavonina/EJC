@@ -9,20 +9,35 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- *
+ * The SeaBattle class represents a Sea Battle game.
  *
  * @author Kseniya Shavonina
  * @version 1.0
  */
 public class SeaBattle {
+    /** Player's field. */
     public PlayingField playerField;
+
+    /** Number of shot attempts. */
     private int attempts;
+
+    /** Field with ships randomly created on it. */
     private PlayingField shipsField;
 
+    /**
+     * Initializes default SeaBattle object
+     * with 50 shot attempts.
+     */
     public SeaBattle() {
         this(50);
     }
 
+    /**
+     * Initializes a SeaBattle object with defined number of
+     * shot attempts. Creates player's field and field with ships.
+     *
+     * @param n is a number of shot attempts.
+     */
     public SeaBattle(int n) {
         this.attempts = n;
         this.shipsField = new PlayingField();
