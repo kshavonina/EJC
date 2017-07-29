@@ -1,8 +1,8 @@
 package task_02;
 
 /**
- * The class Duck represents a duck
- * with its own fly behaviour.
+ * The class Duck represents a duck with its own fly behaviour
+ * and method that performs a flight.
  *
  * @author Kseniya Shavonina
  * @version 1.0
