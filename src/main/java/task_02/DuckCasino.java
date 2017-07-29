@@ -4,7 +4,7 @@ package task_02;
  * The DuckCasino class represents a game of duck casino.
  *
  * @author Kseniya Shavonina
- * @version 1.0
+ * @version 2.0
  */
 public class DuckCasino {
     /** Player's bank. */
@@ -15,6 +15,7 @@ public class DuckCasino {
 
         for (int i = 0; i < 5; i++) {
             newGame.playCasino();
+
             if (newGame.bank < 100) {
                 System.out.println("Sorry, game over.");
                 break;
@@ -32,6 +33,7 @@ public class DuckCasino {
         this.bank -= 100;
         double randValue = Math.random();
         Duck duck;
+
         if (randValue > 0.5) {
             duck = new CommonDuck();
             System.out.println("You're lucky! Your duck can fly!");
@@ -64,7 +66,7 @@ public class DuckCasino {
 
     /**
      * This method checks whether the bet won or not.
-     * The duck must fly 650 km in 10 seconds to win.
+     * The duck must fly 650 km in 10 seconds to win the bet.
      *
      * @param speed is duck's speed of flying.
      * @return true if bet won, false if not.
