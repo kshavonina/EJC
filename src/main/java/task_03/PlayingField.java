@@ -1,18 +1,62 @@
 package task_03;
 
-class PlayingField {
+/**
+ * The PlayingField class represents field for sea battle game.
+ * Also contains a set of methods for work with ships.
+ *
+ * @author Kseniya Shavonina
+ * @version 1.0
+ */
+public class PlayingField {
+    /**
+     * A constant holding the mark of clear water
+     * on the playing field.
+     */
+    public final static char CLEAR_WATER = '.';
+    /**
+     * A constant holding the mark of water near ship
+     * on the playing field.
+     */
+    public final static char WATER_NEAR_SHIP = '-';
+    /**
+     * A constant holding the mark of ship
+     * on the playing field.
+     */
+    public final static char SHIP = 'S';
+    /**
+     * A constant holding the mark of damaged part of ship
+     * on the playing field.
+     */
+    public final static char DAMAGED_SHIP = 'X';
+    /**
+     * Array of letters for playing field.
+     */
+    private final static char[] FIELD_LETTERS = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
+            'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+    /**
+     * Size of playing field.
+     */
     private int fieldSize;
+    /**
+     * Represents playing field itself.
+     */
     private char[][] field;
 
-    final static char CLEAR_WATER = '.';
-    final static char WATER_NEAR_SHIP = '-';
-    final static char SHIP = 'S';
-    final static char DAMAGED_SHIP = 'X';
-
+    /**
+     * Initializes a newly created playing field
+     * with default field size = 10.
+     */
     public PlayingField() {
         this(10);
     }
 
+    /**
+     * Initializes a newly created playing field
+     * with defined field size. Every cell of field
+     * marked as clear water.
+     *
+     * @param fieldSize is the size of field.
+     */
     public PlayingField(int fieldSize) {
         this.fieldSize = fieldSize;
         this.field = new char[fieldSize][fieldSize];
@@ -24,94 +68,93 @@ class PlayingField {
         }
     }
 
+    /**
+     * Returns the size of playing field.
+     *
+     * @return the size of playing field.
+     */
     public int getFieldSize() {
         return this.fieldSize;
     }
 
+    /**
+     * Prints the current playing field
+     * to the console.
+     *
+     * @throws IllegalArgumentException when size of playing field
+     *                                  more than 26 (number of letters in English alphabet).
+     */
     public void printPlayingField() {
+        if (this.fieldSize > 26) {
+            System.err.println("Cannot display playing field, since field size more than 26 and" +
+                    " the English alphabet does not have enough letters.");
+            throw new IllegalArgumentException();
+        }
+
         System.out.print(" " + " ");
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < this.fieldSize; i++) {
             System.out.print(i + " ");
         }
 
         System.out.println();
 
         for (int i = 0; i < this.fieldSize; i++) {
-            switch (i) {
-                case 0:
-                    System.out.print("A" + " ");
-                    break;
-                case 1:
-                    System.out.print("B" + " ");
-                    break;
-                case 2:
-                    System.out.print("C" + " ");
-                    break;
-                case 3:
-                    System.out.print("D" + " ");
-                    break;
-                case 4:
-                    System.out.print("E" + " ");
-                    break;
-                case 5:
-                    System.out.print("F" + " ");
-                    break;
-                case 6:
-                    System.out.print("G" + " ");
-                    break;
-                case 7:
-                    System.out.print("H" + " ");
-                    break;
-                case 8:
-                    System.out.print("I" + " ");
-                    break;
-                case 9:
-                    System.out.print("J" + " ");
-                    break;
-            }
+            System.out.print(PlayingField.FIELD_LETTERS[i] + " ");
 
             for (int j = 0; j < this.fieldSize; j++) {
                 System.out.print(field[i][j] + " ");
+
+                if (j >= 10) {
+                    System.out.print(" ");
+                }
             }
+
             System.out.println();
         }
 
         System.out.println();
     }
 
+    /**
+     * Creates ships randomly on playing field.
+     */
     public void createShips() {
-        // create four-decker
         boolean isCreated = false;
 
+        // create four-decker
         while (!isCreated) {
-            isCreated = createShip((int) Math.round(Math.random() * 9), (int) Math.round(Math.random() * 9), 4);
+            isCreated = createShip((int) Math.round(Math.random() * 9),
+                    (int) Math.round(Math.random() * 9), 4);
         }
 
         isCreated = false;
 
-        // create three-decker
+        // create two three-deckers
         for (int i = 0; i < 2; i++) {
             while (!isCreated) {
-                isCreated = createShip((int) Math.round(Math.random() * 9), (int) Math.round(Math.random() * 9), 3);
+                isCreated = createShip((int) Math.round(Math.random() * 9),
+                        (int) Math.round(Math.random() * 9), 3);
             }
 
             isCreated = false;
         }
 
-        // create two-decker
+        // create three two-deckers
         for (int i = 0; i < 3; i++) {
             while (!isCreated) {
-                isCreated = createShip((int) Math.round(Math.random() * 9), (int) Math.round(Math.random() * 9), 2);
+                isCreated = createShip((int) Math.round(Math.random() * 9),
+                        (int) Math.round(Math.random() * 9), 2);
             }
 
             isCreated = false;
         }
 
-        // create one-decker
+        // create four one-deckers
         for (int i = 0; i < 4; i++) {
             while (!isCreated) {
-                isCreated = createShip((int) Math.round(Math.random() * 9), (int) Math.round(Math.random() * 9), 1);
+                isCreated = createShip((int) Math.round(Math.random() * 9),
+                        (int) Math.round(Math.random() * 9), 1);
             }
 
             isCreated = false;
@@ -120,102 +163,128 @@ class PlayingField {
         // clear cells near ships
         for (int i = 0; i < this.fieldSize; i++) {
             for (int j = 0; j < this.fieldSize; j++) {
-                if (this.field[i][j] == WATER_NEAR_SHIP) {
-                    updateCell(i, j, CLEAR_WATER);
+                if (this.field[i][j] == PlayingField.WATER_NEAR_SHIP) {
+                    updateCell(i, j, PlayingField.CLEAR_WATER);
                 }
             }
         }
 
     }
 
+    /**
+     * Creates ship with defined number of decks on the playing field.
+     *
+     * @param letter      defines a first coordinate on the playing field to start
+     *                    building a ship.
+     * @param digit       defines a second coordinate on the playing field to start
+     *                    building a ship.
+     * @param decksNumber defines a number of decks for the created ship.
+     * @return true if ship is successfully created, false otherwise.
+     */
     private boolean createShip(int letter, int digit, int decksNumber) {
         if (!isCellAvailable(letter, digit)) {
             return false;
         }
 
-        //int direction = (int) Math.round(Math.random() * 3);
+        int direction = (int) Math.round(Math.random() * 3);
 
-        if (digit + decksNumber - 1 < this.fieldSize) {
-            boolean isDirectionAvailable = true;
-
-            for (int i = digit; i < digit + decksNumber; i++) {
-                if (!isCellAvailable(letter, i)) {
-                    isDirectionAvailable = false;
-                    break;
-                }
-            }
-
-            if (isDirectionAvailable) {
-                for (int i = digit; i < digit + decksNumber; i++) {
-                    updateCell(letter, i, SHIP);
-                    updateCellEnvironment(letter, i);
-                }
-
+        for (int i = 0; i < 4; i++) {
+            if (isDirectionAvailable(letter, digit, decksNumber, direction)) {
+                createShipInAvailableDirection(letter, digit, decksNumber, direction);
                 return true;
             }
-        }
 
-        if (letter + decksNumber - 1 < this.fieldSize) {
-            boolean isDirectionAvailable = true;
-
-            for (int i = letter; i < letter + decksNumber; i++) {
-                if (!isCellAvailable(i, digit)) {
-                    isDirectionAvailable = false;
-                    break;
-                }
-            }
-
-            if (isDirectionAvailable) {
-                for (int i = letter; i < letter + decksNumber; i++) {
-                    updateCell(i, digit, SHIP);
-                    updateCellEnvironment(i, digit);
-                }
-
-                return true;
-            }
-        }
-
-        if (digit - (decksNumber - 1) >= 0) {
-            boolean isDirectionAvailable = true;
-
-            for (int i = digit; i > digit - decksNumber; i--) {
-                if (!isCellAvailable(letter, i)) {
-                    isDirectionAvailable = false;
-                    break;
-                }
-            }
-
-            if (isDirectionAvailable) {
-                for (int i = digit; i > digit - decksNumber; i--) {
-                    updateCell(letter, i, SHIP);
-                    updateCellEnvironment(letter, i);
-                }
-
-                return true;
-            }
-        }
-
-        if (letter - (decksNumber - 1) >= 0) {
-            boolean isDirectionAvailable = true;
-
-            for (int i = letter; i > letter - decksNumber; i--) {
-                if (!isCellAvailable(i, digit)) {
-                    isDirectionAvailable = false;
-                    break;
-                }
-            }
-
-            if (isDirectionAvailable) {
-                for (int i = letter; i > letter - decksNumber; i--) {
-                    updateCell(i, digit, SHIP);
-                    updateCellEnvironment(i, digit);
-                }
-
-                return true;
-            }
+            direction = (direction + 1) % 4;
         }
 
         return false;
+    }
+
+    private boolean isDirectionAvailable(int letter, int digit, int decksNumber, int direction) {
+        switch (direction) {
+            case 0:
+                if (decksNumber - 1 + digit >= fieldSize) {
+                    return false;
+                }
+
+                for (int i = digit; i < digit + decksNumber; i++) {
+                    if (!isCellAvailable(letter, i)) {
+                        return false;
+                    }
+                }
+
+                break;
+            case 1:
+                if (decksNumber - 1 + letter >= fieldSize) {
+                    return false;
+                }
+
+                for (int i = letter; i < letter + decksNumber; i++) {
+                    if (!isCellAvailable(i, digit)) {
+                        return false;
+                    }
+                }
+
+                break;
+            case 2:
+                if (digit - (decksNumber - 1) < 0) {
+                    return false;
+                }
+
+                for (int i = digit; i > digit - decksNumber; i--) {
+                    if (!isCellAvailable(letter, i)) {
+                        return false;
+                    }
+                }
+
+                break;
+            case 3:
+                if (letter - (decksNumber - 1) < 0) {
+                    return false;
+                }
+
+                for (int i = letter; i > letter - decksNumber; i--) {
+                    if (!isCellAvailable(i, digit)) {
+                        return false;
+                    }
+                }
+                break;
+        }
+
+        return true;
+    }
+
+    private void createShipInAvailableDirection(int letter, int digit, int decksNumber, int direction) {
+        switch (direction) {
+            case 0:
+                for (int i = digit; i < digit + decksNumber; i++) {
+                    updateCell(letter, i, PlayingField.SHIP);
+                    updateCellEnvironment(letter, i);
+                }
+
+                break;
+            case 1:
+                for (int i = letter; i < letter + decksNumber; i++) {
+                    updateCell(i, digit, PlayingField.SHIP);
+                    updateCellEnvironment(i, digit);
+                }
+
+                break;
+            case 2:
+                for (int i = digit; i > digit - decksNumber; i--) {
+                    updateCell(letter, i, PlayingField.SHIP);
+                    updateCellEnvironment(letter, i);
+                }
+
+                break;
+            case 3:
+                for (int i = letter; i > letter - decksNumber; i--) {
+                    updateCell(i, digit, PlayingField.SHIP);
+                    updateCellEnvironment(i, digit);
+                }
+
+                break;
+        }
     }
 
     private boolean isCellAvailable(int letter, int digit) {

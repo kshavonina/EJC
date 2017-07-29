@@ -8,6 +8,12 @@ import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ *
+ *
+ * @author Kseniya Shavonina
+ * @version 1.0
+ */
 public class SeaBattle {
     public PlayingField playerField;
     private int attempts;
