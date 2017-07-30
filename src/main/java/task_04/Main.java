@@ -4,6 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * Tasks from Zlatopolsky textbook.
+ *
+ * @author Kseniya Shavonina
+ * @version 1.0
+ */
 public class Main {
     public static void main(String[] args) {
         Main main = new Main();
@@ -11,6 +17,12 @@ public class Main {
         System.out.println(main.isPalindrome());
     }
 
+    /**
+     * Makes a new string from odd characters of the string
+     * read from console.
+     *
+     * @return changed string.
+     */
     private String changeWord() {
         String word = "";
 
@@ -30,6 +42,11 @@ public class Main {
         return result.toString();
     }
 
+    /**
+     * Checks if the string from the console is palindrome.
+     *
+     * @return true if yes, false - otherwise.
+     */
     private boolean isPalindrome() {
         String phrase = "";
 
