@@ -6,9 +6,20 @@ import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Another set of tasks from Zlatopolsky textbook.
+ *
+ * @author Kseniya Shavonina
+ * @version 1.0
+ */
 public class ZlatopolskyTasks {
-    //153, 154
-    // task 9.153
+    /**
+     * Task 9.153 from Zlatopolsky textbook.
+     * Counts maximal length of a sequence of the same characters in string read
+     * from the console.
+     *
+     * @return maximal length of a sequence of the same characters.
+     */
     int maxCountSameCharacters() {
         System.out.println("Print text: ");
         String text = "";
@@ -49,7 +60,12 @@ public class ZlatopolskyTasks {
         return maxCountSameCharacters;
     }
 
-    // task 9.154
+    /**
+     * Task 9.154 from Zlatopolsky textbook.
+     * Counts number of different characters that are not digits in the entered string.
+     *
+     * @return number of different characters.
+     */
     int differentCharactersCount() {
         System.out.println("Print text: ");
         String text = "";
@@ -78,5 +94,4 @@ public class ZlatopolskyTasks {
 
         return charactersSet.size();
     }
-
 }
