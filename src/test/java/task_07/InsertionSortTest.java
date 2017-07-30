@@ -2,12 +2,16 @@ package task_07;
 
 import org.junit.Assert;
 import org.junit.Test;
-import task_07.InsertionSort;
-import task_07.QuickSort;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Test coverage for insertion sort.
+ *
+ * @author Kseniya Shavonina
+ * @version 1.0
+ */
 public class InsertionSortTest {
     @Test
     public void testSort() {

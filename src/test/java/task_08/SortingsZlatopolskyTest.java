@@ -6,6 +6,12 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Test coverage for bubble ang merge sortings.
+ *
+ * @author Kseniya Shavonina
+ * @version 1.0
+ */
 public class SortingsZlatopolskyTest {
     @Test
     public void testBubbleSort() {
