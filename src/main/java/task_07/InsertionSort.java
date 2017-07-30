@@ -1,12 +1,15 @@
 package task_07;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Вводить 100 чисел через рандом, 0..1000, InsertionSort.
- * Покрыть Юнит тестами.
+ * Task: create 100 random numbers in a range of 0 to 1000
+ * and then sort array of these numbers using insertion sort.
+ * Also cover test coverage.
+ *
+ * @author Kseniya Shavonina
+ * @version 1.0
  */
 public class InsertionSort {
     public static void main(String[] args) {
@@ -20,8 +23,14 @@ public class InsertionSort {
         System.out.println(new InsertionSort().sort(list));
     }
 
+    /**
+     * Implementation of insertion sort.
+     *
+     * @param list is a list for sorting.
+     * @return sorted list.
+     */
     public List<Integer> sort(List<Integer> list) {
-        int j = 0;
+        int j;
 
         for (int i = 1; i < list.size(); i++) {
             int currValue = list.get(i);
