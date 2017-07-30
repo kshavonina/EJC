@@ -5,7 +5,7 @@ package task_03;
  * Also contains a set of methods for work with ships.
  *
  * @author Kseniya Shavonina
- * @version 1.0
+ * @version 2.0
  */
 public class PlayingField {
     /**
@@ -13,31 +13,37 @@ public class PlayingField {
      * on the playing field.
      */
     public final static char CLEAR_WATER = '.';
+
     /**
      * A constant holding the state of water near ship
      * on the playing field. These cells are not available
      * for creating another ships.
      */
     public final static char WATER_NEAR_SHIP = '-';
+
     /**
      * A constant holding the state of ship
      * on the playing field.
      */
     public final static char SHIP = 'S';
+
     /**
      * A constant holding the state of damaged part of ship
      * on the playing field.
      */
     public final static char DAMAGED_SHIP = 'X';
+
     /**
      * Array of letters for playing field.
      */
     private final static char[] FIELD_LETTERS = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
             'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+
     /**
      * Size of playing field.
      */
     private int fieldSize;
+
     /**
      * Represents playing field itself.
      */
@@ -82,7 +88,7 @@ public class PlayingField {
      * Prints the current playing field
      * to the console.
      *
-     * @throws IllegalArgumentException when size of playing field
+     * @throws IllegalArgumentException when the size of playing field
      *                                  more than 26 (number of letters in English alphabet).
      */
     public void printPlayingField() {
@@ -218,7 +224,7 @@ public class PlayingField {
     private boolean isDirectionAvailable(int letter, int digit, int decksNumber, int direction) {
         switch (direction) {
             case 0:
-                if (decksNumber - 1 + digit >= fieldSize) {
+                if (decksNumber - 1 + digit >= this.fieldSize) {
                     return false;
                 }
 
@@ -230,7 +236,7 @@ public class PlayingField {
 
                 break;
             case 1:
-                if (decksNumber - 1 + letter >= fieldSize) {
+                if (decksNumber - 1 + letter >= this.fieldSize) {
                     return false;
                 }
 

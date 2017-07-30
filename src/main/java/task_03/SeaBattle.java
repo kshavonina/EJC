@@ -12,14 +12,14 @@ import java.util.Set;
  * The SeaBattle class represents a Sea Battle game.
  *
  * @author Kseniya Shavonina
- * @version 1.0
+ * @version 2.0
  */
 public class SeaBattle {
     /** Player's field. */
     public PlayingField playerField;
 
     /** Number of shot attempts. */
-    private int attempts;
+    private int shotAttempts;
 
     /** Field with ships randomly created on it. */
     private PlayingField shipsField;
@@ -34,24 +34,31 @@ public class SeaBattle {
 
     /**
      * Initializes a SeaBattle object with defined number of
-     * shot attempts. Creates player's field and field with ships.
+     * shot shotAttempts. Creates player's field and field with ships.
      *
-     * @param n is a number of shot attempts.
+     * @param shotAttempts is a number of shot shotAttempts.
      */
-    public SeaBattle(int n) {
-        this.attempts = n;
+    public SeaBattle(int shotAttempts) {
+        this.shotAttempts = shotAttempts;
         this.shipsField = new PlayingField();
         this.shipsField.createShips();
         this.playerField = new PlayingField();
     }
 
-    public void startBattle() { // A B C D E F G H I J
+    /**
+     * The main process of the Sea Battle game. A map with ships is generated.
+     * The player have several attempts to shoot (50 by default). If he kills all
+     * the ships, he wins.
+     */
+    public void startBattle() {
         playerField.printPlayingField();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         Set<Pair<Integer, Integer>> damagedCells = new HashSet<>();
+        Set<Pair<Integer, Integer>> enteredCells = new HashSet<>();
+        int invalidInputCount = 0;
 
-        for (int i = 0; i < this.attempts; i++) {
+        for (int i = 0; i < this.shotAttempts; i++) {
             System.out.println("Enter cell: ");
 
             String userShot = "";
@@ -62,8 +69,36 @@ public class SeaBattle {
                 e.printStackTrace();
             }
 
-            int letter = -1;
-            int digit = Integer.parseInt(userShot.substring(1));
+            if (userShot.length() != 2) {
+                if (++invalidInputCount > 4) {
+                    System.out.println("It seems you don't want to play. Try again later.");
+                    break;
+                }
+
+                System.out.println("Invalid input. Please, try again.");
+                i--;
+                continue;
+            }
+
+            int letter;
+            int digit;
+            try {
+                digit = Integer.parseInt(userShot.substring(1));
+            } catch (IllegalArgumentException e) {
+                if (++invalidInputCount > 4) {
+                    System.out.println("It seems you don't want to play. Try again later.");
+                    break;
+                }
+
+                System.out.println("Invalid input. Please, try again.");
+                i--;
+                continue;
+            }
+
+            if (invalidInputCount > 4) {
+                System.out.println("It seems you don't want to play. Try again later.");
+                break;
+            }
 
             switch (userShot.charAt(0)) {
                 case 'A':
@@ -96,6 +131,22 @@ public class SeaBattle {
                 case 'J':
                     letter = 9;
                     break;
+                default:
+                    System.out.println("Invalid input. Please, try again.");
+                    invalidInputCount++;
+                    i--;
+                    continue;
+            }
+
+            Pair<Integer, Integer> currentCell = new Pair<>(letter, digit);
+
+            if (enteredCells.contains(currentCell)) {
+                System.out.println("You already shot this cell. Try to shoot somewhere else.");
+                invalidInputCount++;
+                i--;
+                continue;
+            } else {
+                enteredCells.add(currentCell);
             }
 
             if (shipsField.getCell(letter, digit) == PlayingField.CLEAR_WATER) {
@@ -127,6 +178,8 @@ public class SeaBattle {
             }
         }
 
+        System.out.println("There are no more attempts to shoot. Game over.");
+
         try {
             reader.close();
         } catch (IOException e) {
@@ -134,13 +187,21 @@ public class SeaBattle {
         }
     }
 
+    /**
+     * Checks if the ship is killed.
+     *
+     * @param letter defines a first coordinate of certain ship's cell.
+     * @param digit defines a second coordinate of certain ship's cell.
+     * @return true if the ship is killed, false - otherwise.
+     */
     private boolean isKilled(int letter, int digit) {
         Set<Pair<Integer, Integer>> set = new HashSet<>();
 
         int i = letter;
         int j = digit;
 
-        while (i >= 0 && i < shipsField.getFieldSize() && j >= 0 && j < shipsField.getFieldSize() && shipsField.getCell(i, j) == PlayingField.SHIP) {
+        while (i >= 0 && i < shipsField.getFieldSize() && j >= 0 && j < shipsField.getFieldSize()
+                && shipsField.getCell(i, j) == PlayingField.SHIP) {
             set.add(new Pair<>(i, j));
             i++;
         }
@@ -148,7 +209,8 @@ public class SeaBattle {
         i = letter;
         j = digit;
 
-        while (i >= 0 && i < shipsField.getFieldSize() && j >= 0 && j < shipsField.getFieldSize() && shipsField.getCell(i, j) == PlayingField.SHIP) {
+        while (i >= 0 && i < shipsField.getFieldSize() && j >= 0 && j < shipsField.getFieldSize()
+                && shipsField.getCell(i, j) == PlayingField.SHIP) {
             set.add(new Pair<>(i, j));
             i--;
         }
@@ -156,7 +218,8 @@ public class SeaBattle {
         i = letter;
         j = digit;
 
-        while (i >= 0 && i < shipsField.getFieldSize() && j >= 0 && j < shipsField.getFieldSize() && shipsField.getCell(i, j) == PlayingField.SHIP) {
+        while (i >= 0 && i < shipsField.getFieldSize() && j >= 0 && j < shipsField.getFieldSize()
+                && shipsField.getCell(i, j) == PlayingField.SHIP) {
             set.add(new Pair<>(i, j));
             j++;
         }
@@ -164,7 +227,8 @@ public class SeaBattle {
         i = letter;
         j = digit;
 
-        while (i >= 0 && i < shipsField.getFieldSize() && j >= 0 && j < shipsField.getFieldSize() && shipsField.getCell(i, j) == PlayingField.SHIP) {
+        while (i >= 0 && i < shipsField.getFieldSize() && j >= 0 && j < shipsField.getFieldSize()
+                && shipsField.getCell(i, j) == PlayingField.SHIP) {
             set.add(new Pair<>(i, j));
             j--;
         }
