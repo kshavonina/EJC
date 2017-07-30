@@ -5,6 +5,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Task: implement bubble sort and merge sort
+ * (in accordance with a task from Zlatopolsky textbook).
+ *
+ * @author Kseniya Shavonina
+ * @version 1.0
+ */
 public class SortingsZlatopolsky {
     public static void main(String[] args) {
         Integer[] array = new Integer[100];
@@ -20,6 +27,12 @@ public class SortingsZlatopolsky {
         System.out.println(sortingsZlatopolsky.mergeSort(list));
     }
 
+    /**
+     * Implementation of a bubble sort.
+     *
+     * @param list is a sorting list.
+     * @return a sorted copy of original list.
+     */
     public List<Integer> bubbleSort(List<Integer> list) {
         List<Integer> listCopy = new ArrayList<>(list);
 
@@ -40,6 +53,13 @@ public class SortingsZlatopolsky {
         return listCopy;
     }
 
+    /**
+     * Implementation of a merge sort.
+     * The main process.
+     *
+     * @param list is a sorting list.
+     * @return a sorted copy of original list.
+     */
     public List<Integer> mergeSort(List<Integer> list) {
         if (list.size() < 2) {
             return list;
@@ -53,6 +73,14 @@ public class SortingsZlatopolsky {
                 algorithms.mergeSort(list.subList(middle, list.size())));
     }
 
+    /**
+     * Merges two sorted list into one.
+     *
+     * @param firstList is the first sorted list.
+     * @param secondList is the second sorted list.
+     * @return sorted list composed of elements from the first
+     * and the second original lists.
+     */
     private List<Integer> merge(List<Integer> firstList, List<Integer> secondList) {
         List<Integer> resultList = new ArrayList<>();
 

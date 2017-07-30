@@ -3,6 +3,12 @@ package task_08;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Task: implement binary search.
+ *
+ * @author Kseniya Shavonina
+ * @version 1.0
+ */
 public class BinarySearch {
     public static void main(String[] args) {
         List<Integer> list = new ArrayList<>();
