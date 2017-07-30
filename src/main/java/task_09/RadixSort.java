@@ -3,6 +3,12 @@ package task_09;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Task: implement radix sort.
+ *
+ * @author Kseniya Shavonina
+ * @version 1.0
+ */
 public class RadixSort {
     public static void main(String[] args) {
         List<Integer> list = new ArrayList<>();
@@ -29,6 +35,9 @@ public class RadixSort {
      * k - bit number of data (number of possible key bit values; for example, with russian words k = 33,
      * since the letter can take no more than 33 values).
      * LSD - Least Significant Digit. In this implementation of the algorithm, we begin with the lowest digit.
+     *
+     * @param list is sorting list.
+     * @return sorted copy of original list.
      */
     public List<Integer> radixSortLSD(List<Integer> list) {
         List<Integer> tempList = new ArrayList<>(list);

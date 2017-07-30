@@ -29,7 +29,11 @@ public class BinarySearch {
      * Complexity: O(log(n)).
      * Also known as half-interval search, logarithmic search, or binary chop.
      * Classic search algorithm that finds the position of a target value within a sorted array.
-     * Runs in at worst logarithmic time, making O(log n) comparisons
+     * Runs in at worst logarithmic time, making O(log n) comparisons.
+     *
+     * @param list is a list in which search takes place.
+     * @param value is a value to search.
+     * @return index of needed value or -1 if the value is not in the list.
      */
     public int binarySearch(List<Integer> list, int value) {
         int fromIndex = 0;

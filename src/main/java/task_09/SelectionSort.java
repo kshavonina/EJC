@@ -3,6 +3,12 @@ package task_09;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Task: implement selection sort.
+ *
+ * @author Kseniya Shavonina
+ * @version 1.0
+ */
 public class SelectionSort {
     public static void main(String[] args) {
         List<Integer> list = new ArrayList<>();
@@ -26,6 +32,9 @@ public class SelectionSort {
      * Complexity: O(n^2).
      * Can be both stable and unstable. Stable realization - we insert min element on the first unsorted position,
      * unstable - we swap min element with element on the first unsorted position.
+     *
+     * @param list is sorting list.
+     * @return sorted copy of original list.
      */
     public List<Integer> selectionSort(List<Integer> list) {
         List<Integer> listCopy = new ArrayList<>(list);
