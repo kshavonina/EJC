@@ -32,7 +32,7 @@ public class RadixSort {
      * Complexity: O(m(n + k)).
      * n - number of elements,
      * m - bit number of max value in sorting list,
-     * k - bit number of data (number of possible key bit values; for example, with russian words k = 33,
+     * k - bit number of resources (number of possible key bit values; for example, with russian words k = 33,
      * since the letter can take no more than 33 values).
      * LSD - Least Significant Digit. In this implementation of the algorithm, we begin with the lowest digit.
      *
