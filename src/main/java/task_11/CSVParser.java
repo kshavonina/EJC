@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  * @author Kseniya Shavonina
  * @version 1.0
  */
-class CSVParser {
+public class CSVParser {
     /** Count of threads. */
     private final int THREADS_COUNT = 10;
     /** Path to files to analyse. */
