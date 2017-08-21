@@ -46,8 +46,10 @@ public class DifferentExperiments {
     }
 
     public static String removeChar(String str, char ch) {
-        if (str == null)
+        if (str == null) {
             return null;
+        }
+
         return str.replaceAll(String.valueOf(ch), "");
     }
 }
